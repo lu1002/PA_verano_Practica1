@@ -14,42 +14,27 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
-	public class Controlador_02_b implements ActionListener {
+	public class Controlador_02_b {
 
-	    private Practica02_b ventana;
-	    private JButton Bsalir;
+		 public Controlador_02_b() {
+		        EventQueue.invokeLater(new Runnable() {
+		            public void run() {
+		                try {
+		                    Practica02_b frame = new Practica02_b();
+		                    frame.setVisible(true);
+		                    frame.getBsalir().addActionListener(new ActionListener() {
+		                        public void actionPerformed(ActionEvent e) {
+		                            JOptionPane.showMessageDialog(frame, "Hasta luego");
+		                            frame.dispose();
+		                        }
+		                    });
+		                } catch (Exception e) {
+		                    e.printStackTrace();
+		                }
+		            }
+		        });
+		    }
+		}
 
-	    public Controlador_02_b() {
-	        iniciarAplicacion();
-	    }
-
-	    private void iniciarAplicacion() {
-	        EventQueue.invokeLater(new Runnable() {
-	            public void run() {
-	                try {
-	                    ventana = new Practica02_b();
-	                    Bsalir = new JButton("Salir");
-	                    Bsalir.addActionListener(Controlador_02_b.this);
-	                    ventana.getContentPane().add(Bsalir);
-	                    ventana.setVisible(true);
-	                } catch (Exception e) {
-	                    e.printStackTrace();
-	                }
-	            }
-	        });
-	    }
-
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-	        if (e.getSource() == Bsalir) {
-	            JOptionPane.showMessageDialog(ventana, "Hasta luego");
-	            ventana.dispose();
-	        }
-	    }
-
-	    public static void main(String[] args) {
-	        new Controlador_02_b();
-	    }
-	}
 
 	
